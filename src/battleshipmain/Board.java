@@ -3,7 +3,7 @@ package battleshipmain;
 import javax.swing.*;
 import java.awt.*;
 
-public class Board extends JFrame {
+public class Board {
     public Ocean playerOcean;
     public Ocean enemyOcean;
     

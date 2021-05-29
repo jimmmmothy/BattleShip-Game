@@ -12,20 +12,20 @@ public abstract class Ocean extends JPanel {
 
     protected int x;
     protected int y;
-    protected Cell[][] grid;
+    protected Cell[][] cells;
 
     public Ocean() {
         x = padding;
         y = padding;
 
-        grid = new Cell[cellCount][cellCount];
+        cells = new Cell[cellCount][cellCount];
         initializeGrid();
     }
 
     private void initializeGrid() {
         for (int i = 0; i < cellCount; i++) {
             for (int j = 0; j < cellCount; j++) {
-                grid[i][j] = new Cell();
+                cells[i][j] = new Cell();
             }
         }
     }
@@ -50,7 +50,25 @@ public abstract class Ocean extends JPanel {
 
             for (int vert = 0; vert < cellCount; vert++) {
                 g2d.drawRect(x, y, size, size);
+                
+                x += size;
+            }
 
+            y += size;
+        }
+        
+        y = this.y;
+        
+        for (int horz = 0; horz < cellCount; horz++) {
+            //int x = (getWidth() - (size * 10)) / 2;
+            int x = this.x;
+
+            for (int vert = 0; vert < cellCount; vert++) {
+                if (cells[vert][horz].isHighlighted) {
+                    g2d.setColor(Color.MAGENTA);
+                    g2d.drawRect(x, y, size, size);
+                } 
+                
                 x += size;
             }
 
